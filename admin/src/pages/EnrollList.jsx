@@ -54,17 +54,30 @@ function EnrollList({ token }) {
         </div>
 
         {/* ----------------- Product List ------------------------ */}
-        {
-          list.map((item, index) => (
-            <div className='flex justify-between md:grid grid-cols-[3fr_1fr_1fr_1fr_1fr] items-center py-1 px-2 border text-sm' key={index}>
-              <p className='hidden md:block'>{item._id}</p>
-              <p>{item.enrollment.name}</p>
-              <p className='hidden md:block'>{item.enrollment.phone}</p>
-              <p>{item.enrollment.stream}</p>
-              <p onClick={() => removeEnroll(item._id)} className='text-right md:text-center cursor-pointer text-lg'>X</p>
-            </div>
-          ))
-        }
+        {list.length > 0 ? (
+          list
+            .filter((item) => item.enrollment.fill) // Filter items where enrollment.fill is true
+            .map((item, index) => (
+              <div
+                className="flex justify-between md:grid grid-cols-[3fr_1fr_1fr_1fr_1fr] items-center py-1 px-2 border text-sm"
+                key={index}
+              >
+                <p className="hidden md:block">{item._id}</p>
+                <p>{item.name}</p>
+                <p className="hidden md:block">{item.enrollment.phone}</p>
+                <p>{item.enrollment.stream}</p>
+                <p
+                  onClick={() => removeEnroll(item._id)}
+                  className="text-right md:text-center cursor-pointer text-lg"
+                >
+                  X
+                </p>
+              </div>
+            ))
+        ) : (
+          <p>No enrollments found.</p>
+        )}
+
 
       </div>
     </>
