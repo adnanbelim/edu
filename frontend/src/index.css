@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ bg - #f5f5f5 
+ btn - #0d6efd
+*/
+
+/* Navbar */
+
+a.active p {
+    display: block;
+    border: 1px solid white;
+    background-color: #0d6efd;
+    padding: 8px;
+    color: white;
+    border-radius: 8px;
+}
+
+* {
+    font-family: Outfit;
+}
+
+.prata-regular {
+    font-family: 'Prata', serif;
+}
+
+h1 {
+    font-family: "Prata", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+@media screen and (max-width:640px) {
+    a.active {
+        background-color: #0d6efd;
+        color: white;
+    }
+}
+
+.homeBg {
+    background-image: url('./assets/HomeBg.jpg');
+}
