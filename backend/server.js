@@ -24,9 +24,13 @@ app.use('/api/user', userRouter);
 app.use('/api/course', courseRouter);
 app.use('/api/event', eventRouter);
 
-// Endpoint to handle email submission
 app.post('/send-email', async (req, res) => {
     const { name, email, number, message } = req.body;
+
+    // Check for missing fields
+    if (!name || !email || !number || !message) {
+        return res.status(400).json({ message: 'Please provide all information' });
+    }
 
     try {
         const info = await sendEmail({ name, email, number, message });
@@ -35,6 +39,7 @@ app.post('/send-email', async (req, res) => {
         return res.status(500).json({ message: 'Error sending email', error });
     }
 });
+
 
 app.get('/', (req, res) => {
     res.send('Endpoint Hit!!');
