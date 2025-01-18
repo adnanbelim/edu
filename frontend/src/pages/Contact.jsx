@@ -4,6 +4,7 @@ import axios from 'axios';
 import Title from '../component/Title'
 import { assets } from '../assets/assets'
 import { ShopContext } from '../context/ShopContext';
+import { toast } from 'react-toastify';
 
 const Contact = () => {
   const { backendUrl } = useContext(ShopContext)
@@ -30,13 +31,27 @@ const Contact = () => {
 
     try {
       const response = await axios.post(`${backendUrl}/send-email`, formData);
-      alert('Email sent successfully');
-      setFormData({ name: '', email: '', number: '', message: '' }); // Reset form after submission
+
+      // Check the response message
+      if (response.data.message === 'Please provide all information') {
+        toast.error(response.data.message); // Show error toast
+      } else {
+        toast.success('Email sent successfully'); // Show success toast
+        setFormData({ name: '', email: '', number: '', message: '' }); // Reset form
+      }
     } catch (error) {
-      console.error('There was an error!', error);
-      alert('Failed to send email');
+      // Handle Axios errors
+      if (error.response) {
+        // Show the error message from the server
+        toast.error(error.response.data.message || 'An error occurred');
+      } else {
+        // Generic error for other issues
+        toast.error('Error connecting to the server');
+      }
+      console.error('There was an error!', error); // Log for debugging
     }
   };
+
 
   return (
     <div>
