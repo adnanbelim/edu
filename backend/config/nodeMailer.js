@@ -3,15 +3,15 @@ import nodemailer from 'nodemailer';
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'belimadnan488@gmail.com', // Your email
-    pass: 'exrd ozsw rsve ljlc', // App-specific password
+    user: 'sahilkhanmoyal9001@gmail.com', // Your email
+    pass: 'bakr uvsi ropm htvh', // App-specific password
   },
 });
 
 const sendEmail = ({ name, email, number, message }) => {
   const mailOptions = {
     from: email, // Sender's email
-    to: 'gayujain@gmail.com', // Recipient's email
+    to: 'sahilkhanmoyal9001@gmail.com', // Recipient's email
     subject: 'Education Enquiry',
     html: `
       <div style="font-family: Arial, sans-serif; background-color: #f3f4f6; padding: 20px; color: #111827;">
