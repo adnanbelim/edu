@@ -71,7 +71,7 @@ const Contact = () => {
             <div className="flex justify-between flex-col gap-4 my-2">
               <p className='font-semibold text-xl text-gray-600'>Number</p>
               <input
-                type="text"
+                type="number"
                 name="number"
                 value={formData.number}
                 onChange={handleInputChange}
